@@ -5,6 +5,7 @@ from app.core.database import get_db
 from app.models.enquiry import Enquiry
 from app.models.property import Property
 from app.schemas.enquiry import EnquiryCreate, EnquiryUpdate, EnquiryResponse
+from app.core.email import send_enquiry_confirmation, send_enquiry_admin_notification
 
 router = APIRouter(prefix="/enquiries", tags=["enquiries"])
 
@@ -34,6 +35,15 @@ def create_enquiry(enquiry: EnquiryCreate, db: Session = Depends(get_db)):
     db.add(db_enquiry)
     db.commit()
     db.refresh(db_enquiry)
+
+    property_title = prop.title if prop else "Unknown Property"
+    try:
+        send_enquiry_confirmation(db_enquiry, property_title)
+        send_enquiry_admin_notification(db_enquiry, property_title)
+    except Exception as e:
+        import logging
+        logging.getLogger(__name__).error(f"Email send failed: {e}")
+
     return _to_response(db_enquiry)
 
 

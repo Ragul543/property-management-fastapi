@@ -7,5 +7,11 @@ class Settings(BaseModel):
     version: str = "0.1.0"
     database_url: str = "postgresql+psycopg2://postgres:Solution%40456@143.1.1.107:5432/fastapi_co"
 
+    smtp_host: str = "smtp.gmail.com"
+    smtp_port: int = 587
+    smtp_user: str = "ragulleo8778074691@gmail.com"
+    smtp_password: str = "yzyb bczt aiwc rdbx"
+    admin_email: str = "ragulleo8778074691@gmail.com"
+
 
 settings = Settings()
