@@ -5,7 +5,7 @@ class Settings(BaseModel):
     app_name: str = "FastAPI App"
     debug: bool = True
     version: str = "0.1.0"
-    database_url: str = "postgresql+psycopg2://postgres:Solution%40456@143.1.1.107:5432/fastapi_co"
+    database_url: str = "mysql+pymysql://fastapi_user:Solution%40456@localhost:3306/fastapi_co"
 
     smtp_host: str = "smtp.gmail.com"
     smtp_port: int = 587

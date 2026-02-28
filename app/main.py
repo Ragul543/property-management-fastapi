@@ -47,4 +47,4 @@ def root():
 
 @app.get("/health")
 def health_check():
-    return {"status": "ok", "database": "postgresql @ 143.1.1.107"}
+    return {"status": "ok", "database": "mariadb @ localhost"}
